@@ -18,17 +18,21 @@ public class Controller {
     public Button botonCortar;
     public Button botonCopiar;
     public Button botonPegar;
-    private double fuenteMedida;
+    public Button botonMasTamano;
+    public Button botonMenosTamano;
     public TextArea texto;
-    private double fuente;
     public MenuItem copiar;
     public MenuItem pegar;
+    private double fuenteMedida;
+    private double fuente;
 
-    public void initialize(){
-        /*fuente = texto.getFont().getSize();
-        botonCortar.setGraphic(new ImageView("cut.png"));
-        botonCopiar.setGraphic(new ImageView("copy.png"));
-        botonPegar.setGraphic(new ImageView("paste.png"));*/
+    //commit ...
+    public void initialize() {
+        botonCortar.setGraphic(new ImageView("/image/corta.png"));
+        botonCopiar.setGraphic(new ImageView("/image/copia.png"));
+        botonPegar.setGraphic(new ImageView("/image/pega.png"));
+        botonMasTamano.setGraphic(new ImageView("/image/mas.png"));
+        botonMenosTamano.setGraphic(new ImageView("/image/menos.png"));
     }
 
     public void deshabilitar(Event event){
@@ -80,24 +84,24 @@ public class Controller {
     public void sobre(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sobre EDITOR DE TEXTO PRO");
-        alert.setHeaderText("2015 - Leonardo Martínez");
+        alert.setHeaderText("2015 - Leonardo MartÃ­nez");
         alert.setContentText("2n Curs DAM");
         alert.showAndWait();
     }
 
     public void guardarArchivo(ActionEvent actionEvent) throws IOException {
 
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Guardar archivo");
-        chooser.getExtensionFilters().addAll(
+        FileChooser guarda = new FileChooser();
+        guarda.setTitle("Guardar archivo");
+        guarda.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Archivos", ".txt"),
                 new FileChooser.ExtensionFilter("Todos los archivos", "*.*"));
 
         Stage mainStage = new Stage();
 
-        File selectedFile = chooser.showOpenDialog(mainStage);
+        File selectedFile = guarda.showSaveDialog(mainStage);
 
-        chooser.setTitle(selectedFile.getName());
+        guarda.setTitle(selectedFile.getName());
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(selectedFile));
         bw.write(texto.getText());
@@ -106,17 +110,17 @@ public class Controller {
 
     public void abrirArchivo(ActionEvent actionEvent) {
 
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Abrir archivo");
+        FileChooser abre = new FileChooser();
+        abre.setTitle("Abrir archivo");
 
-        chooser.getExtensionFilters().addAll(
+        abre.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Archivos", ".txt"),
                 new FileChooser.ExtensionFilter("Todos los archivos", "*.*"));
 
         Stage mainStage = new Stage();
 
         try{
-            File selectedFile = chooser.showOpenDialog(mainStage);
+            File selectedFile = abre.showOpenDialog(mainStage);
 
             setStageTitle(selectedFile.getName());
 

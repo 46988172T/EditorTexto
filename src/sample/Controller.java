@@ -26,7 +26,7 @@ public class Controller {
     private double fuenteMedida;
     private double fuente;
 
-    //commit ...
+    //commit ....
     public void initialize() {
         botonCortar.setGraphic(new ImageView("/image/corta.png"));
         botonCopiar.setGraphic(new ImageView("/image/copia.png"));
